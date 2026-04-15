@@ -430,29 +430,30 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
-  collectionName: 'landing_pages';
+export interface ApiBanniereBanniere extends Struct.SingleTypeSchema {
+  collectionName: 'bannieres';
   info: {
-    displayName: 'Landing page';
-    pluralName: 'landing-pages';
-    singularName: 'landing-page';
+    displayName: 'Banni\u00E8re';
+    pluralName: 'bannieres';
+    singularName: 'banniere';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    background: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    hero_banner: Schema.Attribute.Component<'rows.hero', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::landing-page.landing-page'
+      'api::banniere.banniere'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -970,7 +971,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::landing-page.landing-page': ApiLandingPageLandingPage;
+      'api::banniere.banniere': ApiBanniereBanniere;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

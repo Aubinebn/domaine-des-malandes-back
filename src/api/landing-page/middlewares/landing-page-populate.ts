@@ -21,7 +21,7 @@ export default (config, { strapi }: { strapi: Core.Strapi }) => {
         // Add your own logic here.
         return async (ctx, next) => {
 
-                ctx.query.populate = populate;
+                // ctx.query.populate = populate;
 
                 strapi.log.info('In landingPagePopulate middleware.');
 
