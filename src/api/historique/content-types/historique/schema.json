@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "historiques",
+  "info": {
+    "singularName": "historique",
+    "pluralName": "historiques",
+    "displayName": "Historique"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "timeline": {
+      "type": "component",
+      "component": "historique.evenement-historique",
+      "repeatable": true,
+      "required": false
+    },
+    "quote": {
+      "type": "text",
+      "required": false
+    }
+  }
+}

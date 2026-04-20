@@ -460,6 +460,39 @@ export interface ApiBanniereBanniere extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHistoriqueHistorique extends Struct.SingleTypeSchema {
+  collectionName: 'historiques';
+  info: {
+    displayName: 'Historique';
+    pluralName: 'historiques';
+    singularName: 'historique';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::historique.historique'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    quote: Schema.Attribute.Text;
+    timeline: Schema.Attribute.Component<
+      'historique.evenement-historique',
+      true
+    >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPresentationPresentation extends Struct.SingleTypeSchema {
   collectionName: 'presentations';
   info: {
@@ -1005,6 +1038,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::banniere.banniere': ApiBanniereBanniere;
+      'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_historique_evenement_historiques",
+  "info": {
+    "displayName": "Evénement historique"
+  },
+  "options": {},
+  "attributes": {
+    "date_start": {
+      "type": "date",
+      "required": true
+    },
+    "date_end": {
+      "type": "date"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}
