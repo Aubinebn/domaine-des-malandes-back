@@ -526,6 +526,42 @@ export interface ApiPresentationPresentation extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiVinVin extends Struct.SingleTypeSchema {
+  collectionName: 'vins';
+  info: {
+    displayName: 'Vins';
+    pluralName: 'vins';
+    singularName: 'vin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image_left_bottom: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    image_left_top: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    image_right_bottom: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    image_right_top: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::vin.vin'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1040,6 +1076,7 @@ declare module '@strapi/strapi' {
       'api::banniere.banniere': ApiBanniereBanniere;
       'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
+      'api::vin.vin': ApiVinVin;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
