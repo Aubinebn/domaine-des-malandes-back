@@ -62,6 +62,12 @@
         "images",
         "files"
       ]
+    },
+    "slides": {
+      "type": "component",
+      "component": "vins.bouteille",
+      "repeatable": true,
+      "required": false
     }
   }
 }

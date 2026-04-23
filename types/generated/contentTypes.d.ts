@@ -555,6 +555,7 @@ export interface ApiVinVin extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::vin.vin'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    slides: Schema.Attribute.Component<'vins.bouteille', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

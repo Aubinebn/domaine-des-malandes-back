@@ -13,10 +13,24 @@ export interface HistoriqueEvenementHistorique extends Struct.ComponentSchema {
   };
 }
 
+export interface VinsBouteille extends Struct.ComponentSchema {
+  collectionName: 'components_vins_bouteilles';
+  info: {
+    displayName: 'Bouteille';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'historique.evenement-historique': HistoriqueEvenementHistorique;
+      'vins.bouteille': VinsBouteille;
     }
   }
 }
