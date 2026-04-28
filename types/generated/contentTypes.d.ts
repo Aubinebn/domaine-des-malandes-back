@@ -460,6 +460,34 @@ export interface ApiBanniereBanniere extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCarteCarte extends Struct.SingleTypeSchema {
+  collectionName: 'cartes';
+  info: {
+    displayName: 'Vignes';
+    pluralName: 'cartes';
+    singularName: 'carte';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::carte.carte'> &
+      Schema.Attribute.Private;
+    locations: Schema.Attribute.Component<'carte.vigne', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    quote: Schema.Attribute.Text;
+    text: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHistoriqueHistorique extends Struct.SingleTypeSchema {
   collectionName: 'historiques';
   info: {
@@ -1120,6 +1148,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::banniere.banniere': ApiBanniereBanniere;
+      'api::carte.carte': ApiCarteCarte;
       'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
       'api::vin.vin': ApiVinVin;

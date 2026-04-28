@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_carte_vignes",
+  "info": {
+    "displayName": "Vigne"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "location": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    }
+  },
+  "config": {}
+}

@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface CarteVigne extends Struct.ComponentSchema {
+  collectionName: 'components_carte_vignes';
+  info: {
+    displayName: 'Vigne';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    location: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface HistoriqueEvenementHistorique extends Struct.ComponentSchema {
   collectionName: 'components_historique_evenement_historiques';
   info: {
@@ -29,6 +42,7 @@ export interface VinsBouteille extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'carte.vigne': CarteVigne;
       'historique.evenement-historique': HistoriqueEvenementHistorique;
       'vins.bouteille': VinsBouteille;
     }
