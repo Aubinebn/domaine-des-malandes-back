@@ -554,6 +554,38 @@ export interface ApiPresentationPresentation extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiSavoirFaireSavoirFaire extends Struct.SingleTypeSchema {
+  collectionName: 'savoir_faires';
+  info: {
+    displayName: 'Savoir-faire';
+    pluralName: 'savoir-faires';
+    singularName: 'savoir-faire';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::savoir-faire.savoir-faire'
+    > &
+      Schema.Attribute.Private;
+    main_image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    secondary_images: Schema.Attribute.Media<'images' | 'files', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiVinVin extends Struct.SingleTypeSchema {
   collectionName: 'vins';
   info: {
@@ -1151,6 +1183,7 @@ declare module '@strapi/strapi' {
       'api::carte.carte': ApiCarteCarte;
       'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
+      'api::savoir-faire.savoir-faire': ApiSavoirFaireSavoirFaire;
       'api::vin.vin': ApiVinVin;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
