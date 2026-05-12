@@ -488,6 +488,39 @@ export interface ApiCarteCarte extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiEquipeEquipe extends Struct.SingleTypeSchema {
+  collectionName: 'equipes';
+  info: {
+    displayName: "L'\u00E9quipe";
+    pluralName: 'equipes';
+    singularName: 'equipe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover_image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::equipe.equipe'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    quote: Schema.Attribute.Text;
+    secondary_images: Schema.Attribute.Media<'images' | 'files', true>;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHistoriqueHistorique extends Struct.SingleTypeSchema {
   collectionName: 'historiques';
   info: {
@@ -1181,6 +1214,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::banniere.banniere': ApiBanniereBanniere;
       'api::carte.carte': ApiCarteCarte;
+      'api::equipe.equipe': ApiEquipeEquipe;
       'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
       'api::savoir-faire.savoir-faire': ApiSavoirFaireSavoirFaire;
