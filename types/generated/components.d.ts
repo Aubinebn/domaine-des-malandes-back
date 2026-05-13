@@ -26,6 +26,18 @@ export interface HistoriqueEvenementHistorique extends Struct.ComponentSchema {
   };
 }
 
+export interface LinksSocial extends Struct.ComponentSchema {
+  collectionName: 'components_links_socials';
+  info: {
+    displayName: 'Social';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface VinsBouteille extends Struct.ComponentSchema {
   collectionName: 'components_vins_bouteilles';
   info: {
@@ -44,6 +56,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'carte.vigne': CarteVigne;
       'historique.evenement-historique': HistoriqueEvenementHistorique;
+      'links.social': LinksSocial;
       'vins.bouteille': VinsBouteille;
     }
   }

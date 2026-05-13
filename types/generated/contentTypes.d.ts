@@ -521,6 +521,41 @@ export interface ApiEquipeEquipe extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
+  info: {
+    displayName: 'Pied de page';
+    pluralName: 'footers';
+    singularName: 'footer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.String;
+    certificate: Schema.Attribute.Media<'images' | 'files'>;
+    city: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer.footer'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    mail: Schema.Attribute.Email;
+    publishedAt: Schema.Attribute.DateTime;
+    social_links: Schema.Attribute.Component<'links.social', true>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHistoriqueHistorique extends Struct.SingleTypeSchema {
   collectionName: 'historiques';
   info: {
@@ -1215,6 +1250,7 @@ declare module '@strapi/strapi' {
       'api::banniere.banniere': ApiBanniereBanniere;
       'api::carte.carte': ApiCarteCarte;
       'api::equipe.equipe': ApiEquipeEquipe;
+      'api::footer.footer': ApiFooterFooter;
       'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
       'api::savoir-faire.savoir-faire': ApiSavoirFaireSavoirFaire;
