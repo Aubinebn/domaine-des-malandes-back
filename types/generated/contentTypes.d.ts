@@ -556,6 +556,35 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiGalerieGalerie extends Struct.SingleTypeSchema {
+  collectionName: 'galeries';
+  info: {
+    displayName: 'Galerie';
+    pluralName: 'galeries';
+    singularName: 'galerie';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    images: Schema.Attribute.Media<'images' | 'files', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::galerie.galerie'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHistoriqueHistorique extends Struct.SingleTypeSchema {
   collectionName: 'historiques';
   info: {
@@ -1251,6 +1280,7 @@ declare module '@strapi/strapi' {
       'api::carte.carte': ApiCarteCarte;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::footer.footer': ApiFooterFooter;
+      'api::galerie.galerie': ApiGalerieGalerie;
       'api::historique.historique': ApiHistoriqueHistorique;
       'api::presentation.presentation': ApiPresentationPresentation;
       'api::savoir-faire.savoir-faire': ApiSavoirFaireSavoirFaire;
